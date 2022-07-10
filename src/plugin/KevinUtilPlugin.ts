@@ -4,7 +4,7 @@ import {
     KevinUtilPluginSettings,
     KevinUtilSettings,
 } from "plugin/KevinUtilSettings";
-import * as AppUtils from "./AppUtils"
+import { getMentions } from "./AppUtils";
 
 export class KevinUtilPlugin extends Plugin {
     settings: KevinUtilPluginSettings;
@@ -23,7 +23,7 @@ export class KevinUtilPlugin extends Plugin {
                     return;
                 }
 
-                const mentions = AppUtils.getMentions(this.app);
+                const mentions = getMentions(this.app);
 
                 let removedFiles = 0;
                 Vault.recurseChildren(attachmentFolder, file => {
