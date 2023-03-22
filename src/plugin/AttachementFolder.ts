@@ -1,5 +1,5 @@
 import { TFile, TFolder, Vault } from "obsidian";
-import { getThePlugin } from "./KevinUtilPlugin";
+import { getThePlugin } from "./KUtilPlugin";
 import { getAllAppMentions } from "./KMentions";
 
 export const getAttachmentFolder = () => {
