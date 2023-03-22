@@ -44,7 +44,7 @@ export class KUtilPlugin extends Plugin {
 
 export const getThePlugin = () => {
     if (ThePlugin == null) {
-        throw "Plugin has not been initialized!";
+        throw new Error("Plugin has not been initialized!");
     }
 
     return ThePlugin;
