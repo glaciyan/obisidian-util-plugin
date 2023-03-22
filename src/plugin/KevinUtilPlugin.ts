@@ -31,12 +31,12 @@ export class KevinUtilPlugin extends Plugin {
                     if (!(file instanceof TFile)) return;
 
                     if (!mentions.has(file.path)) {
-                        this.app.vault.trash(
-                            file,
-                            this.settings.useSystemTrash
-                        );
-                        removedFiles++;
-                        console.log(`Removed ${file.name}`);
+                        this.app.vault
+                            .trash(file, this.settings.useSystemTrash)
+                            .then(() => {
+                                removedFiles++;
+                                console.log(`Removed ${file.name}`);
+                            });
                     }
                 });
 
