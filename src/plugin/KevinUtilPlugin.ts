@@ -1,10 +1,13 @@
-import { Notice, Plugin, TFile, TFolder, Vault } from "obsidian";
+import { Plugin } from "obsidian";
 import {
     DEFAULT_SETTINGS,
     KevinUtilPluginSettings,
-    KevinUtilSettings,
+    KevinUtilSettings
 } from "plugin/KevinUtilSettings";
-import { getMentions } from "./AppUtils";
+import { cleanUpAttachmentFolder } from "./KCommands";
+import { KPlugin } from "./ThePlugin";
+
+let ThePlugin: KPlugin | null = null;
 
 export class KevinUtilPlugin extends Plugin {
     settings: KevinUtilPluginSettings;
@@ -12,37 +15,12 @@ export class KevinUtilPlugin extends Plugin {
     async onload() {
         await this.loadSettings();
 
-        this.addCommand({
-            id: "clean-up-attachment-folder",
-            name: "Clean up Attachment folder",
-            callback: async () => {
-                const attachmentFolder = this.app.vault.getAbstractFileByPath(
-                    this.settings.attachmentFolder
-                ) as TFolder;
-                if (attachmentFolder === null) {
-                    new Notice("Error: No Attachment folder found!");
-                    return;
-                }
+        ThePlugin = {
+            app: this.app,
+            settings: this.settings,
+        };
 
-                const mentions = getMentions(this.app);
-
-                let removedFiles = 0;
-                Vault.recurseChildren(attachmentFolder, (file) => {
-                    if (!(file instanceof TFile)) return;
-
-                    if (!mentions.has(file.path)) {
-                        this.app.vault
-                            .trash(file, this.settings.useSystemTrash)
-                            .then(() => {
-                                removedFiles++;
-                                console.log(`Removed ${file.name}`);
-                            });
-                    }
-                });
-
-                new Notice(`Removed ${removedFiles} files`);
-            },
-        });
+        this.addCommand(cleanUpAttachmentFolder);
 
         // This adds a settings tab so the user can configure various aspects of the plugin
         this.addSettingTab(new KevinUtilSettings(this.app, this));
@@ -63,3 +41,11 @@ export class KevinUtilPlugin extends Plugin {
         await this.saveData({ settings: this.settings });
     }
 }
+
+export const getThePlugin = () => {
+    if (ThePlugin == null) {
+        throw "Plugin has not been initialized!";
+    }
+
+    return ThePlugin;
+};
