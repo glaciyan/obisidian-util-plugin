@@ -35,7 +35,7 @@ export const cleanUp = async (): Promise<number> => {
                     .then(() => {
                         removedFiles++;
                         console.log(
-                            `Removed ${file.name} Amount: ${removedFiles}`
+                            `Removed ${file.name}`
                         );
                     })
                     .catch((e) => {
