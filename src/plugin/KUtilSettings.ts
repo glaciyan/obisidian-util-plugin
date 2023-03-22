@@ -1,4 +1,4 @@
-import KevinUtilPlugin from "main";
+import KUtilPlugin from "main";
 import { App, PluginSettingTab, Setting } from "obsidian";
 
 export interface KevinUtilPluginSettings {
@@ -12,9 +12,9 @@ export const DEFAULT_SETTINGS: KevinUtilPluginSettings = {
 };
 
 export class KevinUtilSettings extends PluginSettingTab {
-    plugin: KevinUtilPlugin;
+    plugin: KUtilPlugin;
 
-    constructor(app: App, plugin: KevinUtilPlugin) {
+    constructor(app: App, plugin: KUtilPlugin) {
         super(app, plugin);
         this.plugin = plugin;
     }

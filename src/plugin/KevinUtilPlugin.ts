@@ -3,13 +3,13 @@ import {
     DEFAULT_SETTINGS,
     KevinUtilPluginSettings,
     KevinUtilSettings
-} from "plugin/KevinUtilSettings";
+} from "plugin/KUtilSettings";
 import { cleanUpAttachmentFolder } from "./KCommands";
 import { KPlugin } from "./ThePlugin";
 
 let ThePlugin: KPlugin | null = null;
 
-export class KevinUtilPlugin extends Plugin {
+export class KUtilPlugin extends Plugin {
     settings: KevinUtilPluginSettings;
 
     async onload() {

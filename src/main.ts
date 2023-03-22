@@ -1,3 +1,3 @@
-import { KevinUtilPlugin } from "plugin/KevinUtilPlugin";
+import { KUtilPlugin } from "plugin/KevinUtilPlugin";
 
-export default KevinUtilPlugin;
+export default KUtilPlugin;
