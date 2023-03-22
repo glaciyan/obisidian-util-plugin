@@ -1,7 +1,7 @@
 import { App } from "obsidian";
-import { KevinUtilPluginSettings } from "plugin/KUtilSettings";
+import { KUtilPluginSettings } from "plugin/KUtilSettings";
 
 export interface KPlugin {
     app: App;
-    settings: KevinUtilPluginSettings;
+    settings: KUtilPluginSettings;
 }

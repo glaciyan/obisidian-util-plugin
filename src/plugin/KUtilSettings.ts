@@ -1,17 +1,17 @@
 import KUtilPlugin from "main";
 import { App, PluginSettingTab, Setting } from "obsidian";
 
-export interface KevinUtilPluginSettings {
+export interface KUtilPluginSettings {
     attachmentFolder: string;
     useSystemTrash: boolean;
 }
 
-export const DEFAULT_SETTINGS: KevinUtilPluginSettings = {
+export const DEFAULT_SETTINGS: KUtilPluginSettings = {
     attachmentFolder: "000 Media",
     useSystemTrash: false,
 };
 
-export class KevinUtilSettings extends PluginSettingTab {
+export class KUtilSettings extends PluginSettingTab {
     plugin: KUtilPlugin;
 
     constructor(app: App, plugin: KUtilPlugin) {
