@@ -1,6 +1,13 @@
 import { App } from "obsidian";
 
-export function getMentions(app: App) {
+export type Mentions = Map<
+    string,
+    {
+        linkers: Set<string>;
+    }
+>;
+
+export function getAllAppMentions(app: App): Mentions {
     const mentions: Map<string, { linkers: Set<string> }> = new Map();
 
     Object.entries(app.metadataCache.resolvedLinks).forEach(
