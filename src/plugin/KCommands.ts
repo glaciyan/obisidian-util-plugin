@@ -5,11 +5,12 @@ export const cleanUpAttachmentFolder = {
     id: "clean-up-attachment-folder",
     name: "Clean up Attachment folder",
     callback: async () => {
-        try {
-            const removedFiles = cleanUp();
-            new Notice(`Removed ${removedFiles} files`);
-        } catch (e) {
-            new Notice(`Error: ${e.message}`);
-        }
+        return cleanUp()
+            .then((removedFiles) => {
+                new Notice(`Removed ${removedFiles} files`);
+            })
+            .catch((e) => {
+                new Notice(`Error: ${e.message}`);
+            });
     },
 };
